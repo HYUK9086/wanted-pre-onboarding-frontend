@@ -20,7 +20,7 @@ export default function SignUp() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("todo");
+      navigate("/todo");
     }
   }, []);
 
