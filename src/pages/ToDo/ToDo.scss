@@ -1,0 +1,72 @@
+.AllWarp {
+  .titleWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    background-color: pink;
+    .title {
+      text-align: center;
+      color: white;
+      margin: 0;
+      font-size: 70px
+    }
+    .logoutWrap {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      position: absolute;
+      right: 40px;
+      bottom: 8px;
+      .logoutText {
+        margin: 0px;
+        margin-bottom: 18px;
+        color: white;
+      }
+      .logout {
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+      }
+    }
+  }
+  .todoAllWrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    .todoListWrap {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      height: 600px;
+      border: solid 1px black;
+      border-radius: 6px;
+      padding: 10px;
+      background-color: #ffd1d7;
+    }
+  }
+  .todoInputWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    .todoInput {
+      width: 64%;
+    }
+    .todoBtn {
+      background-color: transparent;
+      border: 0;
+      .todoBtnImg {
+        width: 50px;
+        cursor: pointer;
+      }
+      .disTodoBtnImg {
+        width: 50px;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
