@@ -1,0 +1,17 @@
+.allWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 350px;
+  margin: auto;
+  .todoimg {
+    width: 350px;
+    height: 350px;
+  }
+  .emptyTitle{
+    font-size: 28px;
+    color: white;
+  }
+}
