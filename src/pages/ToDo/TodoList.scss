@@ -1,0 +1,95 @@
+.todosWrap {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  .todoWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .todoInfo {
+      .completeCheackBox {
+        cursor: pointer;
+      }
+      .todo {
+        margin-left: 5px;
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
+      }
+    }
+    .modifyTodo {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      width: 60px;
+      height: 40px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+      color: pink;
+      font-weight: bold;
+    }
+    .disTodoModify {
+      width: 25px;
+      width: 60px;
+      height: 40px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+      color: pink;
+      font-weight: bold;
+      cursor: not-allowed;
+    }
+    .deletTodo {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      width: 60px;
+      height: 40px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+      color: pink;
+      font-weight: bold;
+    }
+  }
+  .modifyWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    .modifyInput {
+      width: 40%;
+      font-size: 25px;
+      border-color: pink;
+      color: pink;
+      border-radius: 4px;
+    }
+    .modifyBtnWrap {
+      .modifyBtn {
+        width: 60px;
+        height: 40px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 20px;
+        background-color: white;
+        color: pink;
+        font-weight: bold;
+      }
+      .cancelBtn {
+        width: 60px;
+        height: 40px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 20px;
+        background-color: white;
+        color: pink;
+        font-weight: bold;
+      }
+    }
+  }
+}
