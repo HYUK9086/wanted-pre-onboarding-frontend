@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.scss";
@@ -15,7 +15,7 @@ export default function SignIn() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("todo");
+      navigate("/todo");
     }
   }, []);
 
@@ -38,7 +38,6 @@ export default function SignIn() {
       .then((data) => {
         localStorage.setItem("token", data.access_token);
         if (data.access_token !== undefined) {
-          localStorage.setItem("token", data.access_token);
           navigate("/todo");
         } else {
           alert("이이디 또는 비밀번호가 들렸습니다.");
