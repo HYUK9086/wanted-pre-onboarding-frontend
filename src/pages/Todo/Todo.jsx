@@ -14,27 +14,19 @@ export default function Todo() {
   const [todoList, setTodoList] = useState([]);
   const navigate = useNavigate();
 
-  const getTodo = (e) => {
-    setTodo(e.target.value);
-  };
+  const getTodo = (e) => setTodo(e.target.value);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token === null) {
-      navigate("/");
-    }
+    if (!localStorage.getItem("token")) navigate("/");
   }, []);
 
   const getTodos = async () => {
     try {
       const access_token = localStorage.getItem("token");
-      await axios
-        .get(`${BASE_URL}/todos`, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
-        .then((result) => setTodoList(result.data));
+      const result = await axios.get(`${BASE_URL}/todos`, {
+        headers: { Authorization: `Bearer ${access_token}` },
+      });
+      setTodoList(result.data);
     } catch (error) {
       console.error(error);
     }
@@ -47,25 +39,20 @@ export default function Todo() {
   const createTodo = async (newTodo) => {
     try {
       const access_token = localStorage.getItem("token");
-      await axios
-        .post(
-          `${BASE_URL}/todos`,
-          {
-            todo: newTodo,
+      const result = await axios.post(
+        `${BASE_URL}/todos`,
+        { todo: newTodo },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((result) => {
-          if (result.status === 201) {
-            setTodoList([...todoList, result.data]);
-            setTodo("");
-          }
-        });
+        }
+      );
+      if (result.status === 201) {
+        setTodoList([...todoList, result.data]);
+        setTodo("");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -74,15 +61,13 @@ export default function Todo() {
   const addTodo = async (e) => {
     e.preventDefault();
     const isTodoValid = todo.trim().length > 0;
-    if (isTodoValid) {
-      createTodo(todo);
-    }
+    if (isTodoValid) createTodo(todo);
   };
 
-  function logout() {
+  const logout = () => {
     localStorage.removeItem("token");
     navigate("/");
-  }
+  };
 
   return (
     <div className="AllWarp">
@@ -110,7 +95,6 @@ export default function Todo() {
                 todoList={todoList}
                 setTodoList={setTodoList}
                 todo={todo}
-                getTodos={getTodos}
               />
             ))
           )}

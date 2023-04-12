@@ -4,7 +4,7 @@ import BASE_URL from "../../config/config";
 import axios from "axios";
 import "./TodoList.scss";
 
-export default function TodoList({ todoList, setTodoList, todo, getTodos }) {
+export default function TodoList({ todoList, setTodoList, todo }) {
   const [isComplete, setIsComplete] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isEditing, setIsEditing] = useState(null);
@@ -13,42 +13,37 @@ export default function TodoList({ todoList, setTodoList, todo, getTodos }) {
   const updateTodo = async (id, text) => {
     try {
       const access_token = localStorage.getItem("token");
-      await axios
-        .put(
-          `${BASE_URL}/todos/${id}`,
-          {
-            todo: text,
-            isCompleted: false,
+      const result = await axios.put(
+        `${BASE_URL}/todos/${id}`,
+        {
+          todo: text,
+          isCompleted: false,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((result) => {
-          if (result.status === 200) {
-            setTodoList((prevTodos) =>
-              prevTodos.map((todo) => {
-                if (todo.id === id) {
-                  todo.todo = text;
-                }
-                return todo;
-              })
-            );
-            setIsEditing(null);
-            setEditingTodo("");
-          }
-        });
+        }
+      );
+      if (result.status === 200) {
+        setTodoList((prevTodos) =>
+          prevTodos.map((todo) => {
+            if (todo.id === id) {
+              todo.todo = text;
+            }
+            return todo;
+          })
+        );
+        setIsEditing(null);
+        setEditingTodo("");
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getEditTodo = (e) => {
-    setEditingTodo(e.target.value);
-  };
+  const getEditTodo = (e) => setEditingTodo(e.target.value);
 
   const handleEditTodoCancel = () => {
     setIsEditing(null);
@@ -58,32 +53,22 @@ export default function TodoList({ todoList, setTodoList, todo, getTodos }) {
   const editTodoSubmit = async (e) => {
     e.preventDefault();
     const isTodoValid = editingTodo.trim().length > 0;
-    if (isTodoValid) {
-      updateTodo(isEditing, editingTodo);
-    }
+    if (isTodoValid) updateTodo(isEditing, editingTodo);
   };
 
-  const checkTodo = (e) => {
-    setIsComplete(e.target.checked);
-  };
+  const checkTodo = (e) => setIsComplete(e.target.checked);
 
-  useEffect(() => {
-    setIsDisabled(!isComplete);
-  }, [isComplete]);
+  useEffect(() => setIsDisabled(!isComplete), [isComplete]);
 
   const deleteTodoHandle = (id) => {
     const access_token = localStorage.getItem("token");
     axios
       .delete(`${BASE_URL}/todos/${id}`, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+        headers: { Authorization: `Bearer ${access_token}` },
       })
       .then((result) => {
-        if (result.status === 204) {
-          const removeTodo = todoList.filter((todo) => todo.id !== id);
-          setTodoList(removeTodo);
-        }
+        if (result.status === 204)
+          setTodoList(todoList.filter((todo) => todo.id !== id));
       });
   };
 
