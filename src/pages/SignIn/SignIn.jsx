@@ -63,6 +63,7 @@ export default function SignIn() {
   return (
     <div className="login">
       <div className="header">로그인</div>
+      <hr />
       <section className="container">
         <div className="loginGuide">
           <span>이메일로 로그인해주세요.</span>
