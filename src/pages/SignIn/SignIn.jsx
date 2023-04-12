@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import BASE_URL from "../../config/config";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.scss";
 
@@ -30,7 +31,7 @@ export default function SignIn() {
     try {
       await axios
         .post(
-          "https://www.pre-onboarding-selection-task.shop/auth/signin",
+          `${BASE_URL}/auth/signin`,
           {
             email: userInfo.email,
             password: userInfo.pw,

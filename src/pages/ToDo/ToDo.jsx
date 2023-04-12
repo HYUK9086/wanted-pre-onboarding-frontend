@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../config/config";
 import axios from "axios";
 import EmptyTodo from "./EmptyTodo";
 import TodoList from "./TodoList";
@@ -7,7 +8,6 @@ import logoutImg from "../../assets/button/logoutImg.png";
 import commentBtn from "../../assets/button/commentBtn.png";
 import actCommentBtn from "../../assets/button/actCommentBtn.png";
 import "./Todo.scss";
-
 
 export default function Todo() {
   const [todo, setTodo] = useState("");
@@ -29,7 +29,7 @@ export default function Todo() {
     try {
       const access_token = localStorage.getItem("token");
       await axios
-        .get("https://www.pre-onboarding-selection-task.shop/todos", {
+        .get(`${BASE_URL}/todos`, {
           headers: {
             Authorization: `Bearer ${access_token}`,
           },
@@ -49,7 +49,7 @@ export default function Todo() {
       const access_token = localStorage.getItem("token");
       await axios
         .post(
-          "https://www.pre-onboarding-selection-task.shop/todos",
+          `${BASE_URL}/todos`,
           {
             todo: newTodo,
           },
@@ -89,7 +89,7 @@ export default function Todo() {
       <div className="titleWrap">
         <h1 className="title">Todo List</h1>
         <div className="logoutWrap">
-        <p className='logoutText'>로그아웃</p>
+          <p className="logoutText">로그아웃</p>
           <img
             className="logout"
             src={logoutImg}

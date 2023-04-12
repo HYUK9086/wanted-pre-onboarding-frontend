@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import BASE_URL from '../../config/config';
 import axios from "axios";
 import "./TodoList.scss";
 
@@ -14,7 +15,7 @@ export default function TodoList({ todoList, setTodoList, todo, getTodos }) {
       const access_token = localStorage.getItem("token");
       await axios
         .put(
-          `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+          `${BASE_URL}/todos/${id}`,
           {
             todo: text,
             isCompleted: false,
@@ -73,7 +74,7 @@ export default function TodoList({ todoList, setTodoList, todo, getTodos }) {
   const deleteTodoHandle = (id) => {
     const access_token = localStorage.getItem("token");
     axios
-      .delete(`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
+      .delete(`${BASE_URL}/todos/${id}`, {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
