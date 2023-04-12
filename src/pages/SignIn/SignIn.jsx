@@ -100,7 +100,7 @@ export default function SignIn() {
           <button
             onClick={goToSignUp}
             className="joinMember"
-            data-testid="signup-button"
+            data-testid="signin-button"
           >
             <span>아직 회원이 아니세요?</span>
             <span> 회원가입</span>
