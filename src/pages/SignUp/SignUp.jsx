@@ -1,5 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { useState } from "react";
+import BASE_URL from '../../config/config';
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.scss";
 
@@ -24,28 +26,31 @@ export default function SignUp() {
     }
   }, []);
 
-  const goToMain = () => {
-    fetch("https://www.pre-onboarding-selection-task.shop/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        password: signupInfo.pw,
-        email: signupInfo.email,
-      }),
-    })
-      .then((res) => {
-        if (res.status === 201) {
-          navigate("/");
-          console.log(res);
-        } else if (res.status === 400) {
-          alert("이미 등록된 이메일 입니다.");
-          navigate("/signup");
-          console.log(res);
-        }
-      })
-      .catch((err) => console.log("err: ", err))
+  const goToMain = async (e) => {
+    e.preventDefault();
+    try {
+      await axios
+        .post(
+          `${BASE_URL}auth/signup`,
+          {
+            password: signupInfo.pw,
+            email: signupInfo.email,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((result) => {
+          if (result.status === 201) {
+            navigate("/", { replace: true });
+          }
+        });
+    } catch (error) {
+      console.error(error);
+      alert("이미 등록된 이메일 입니다.");
+    }
   };
 
   const waringPw = () => {
