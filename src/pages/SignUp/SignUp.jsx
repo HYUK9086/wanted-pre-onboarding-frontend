@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import BASE_URL from '../../config/config';
+import BASE_URL from "../../config/config";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.scss";
@@ -31,7 +31,7 @@ export default function SignUp() {
     try {
       await axios
         .post(
-          `${BASE_URL}auth/signup`,
+          `${BASE_URL}/auth/signup`,
           {
             password: signupInfo.pw,
             email: signupInfo.email,
