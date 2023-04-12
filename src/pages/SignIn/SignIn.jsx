@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.scss";
 
@@ -23,26 +24,34 @@ export default function SignIn() {
     navigate("/signup");
   };
 
-  const goToToDo = () => {
-    fetch("https://www.pre-onboarding-selection-task.shop/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: userInfo.email,
-        password: userInfo.pw,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem("token", data.access_token);
-        if (data.access_token !== undefined) {
-          navigate("/todo");
-        } else {
-          alert("이이디 또는 비밀번호가 들렸습니다.");
-        }
-      });
+  const goToTodo = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios
+        .post(
+          "https://www.pre-onboarding-selection-task.shop/auth/signin",
+          {
+            email: userInfo.email,
+            password: userInfo.pw,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((result) => {
+          if (result.status === 200) {
+            const data = result.data;
+            localStorage.setItem("token", data.access_token);
+            navigate("/todo");
+          }
+        });
+    } catch (error) {
+      console.error(error);
+      alert("이이디 또는 비밀번호가 들렸습니다.");
+    }
   };
 
   const regex = /^\S+@\S+$/;
@@ -78,7 +87,7 @@ export default function SignIn() {
             <button
               type="button"
               className={isDisabled ? "loginBtn" : "disabledBtn"}
-              onClick={goToToDo}
+              onClick={goToTodo}
               disabled={isDisabled ? false : true}
               data-testid="signin-button"
             >
