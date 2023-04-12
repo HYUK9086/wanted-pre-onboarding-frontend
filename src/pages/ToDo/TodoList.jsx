@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import BASE_URL from '../../config/config';
+import BASE_URL from "../../config/config";
 import axios from "axios";
 import "./TodoList.scss";
 
@@ -81,14 +81,10 @@ export default function TodoList({ todoList, setTodoList, todo, getTodos }) {
       })
       .then((result) => {
         if (result.status === 204) {
-          deleteTodo();
+          const removeTodo = todoList.filter((todo) => todo.id !== id);
+          setTodoList(removeTodo);
         }
       });
-  };
-
-  const deleteTodo = (id) => {
-    const removeTodo = todoList.filter((todo) => todo.id !== id);
-    setTodoList(removeTodo);
   };
 
   return (
@@ -119,8 +115,7 @@ export default function TodoList({ todoList, setTodoList, todo, getTodos }) {
             <button
               className="deletTodo"
               data-testid="delete-button"
-              onClick={() => deleteTodo(todo.id)}
-              //onClick={deleteTodoHandle}
+              onClick={() => deleteTodoHandle(todo.id)}
             >
               삭제
             </button>
