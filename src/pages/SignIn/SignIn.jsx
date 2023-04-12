@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../../config/config";
 import { useNavigate } from "react-router-dom";
@@ -16,39 +15,32 @@ export default function SignIn() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/todo");
-    }
+    if (token) navigate("/todo");
   }, []);
 
-  const goToSignUp = () => {
-    navigate("/signup");
-  };
+  const goToSignUp = () => navigate("/signup");
 
   const goToTodo = async (e) => {
     e.preventDefault();
 
     try {
-      await axios
-        .post(
-          `${BASE_URL}/auth/signin`,
-          {
-            email: userInfo.email,
-            password: userInfo.pw,
+      const result = await axios.post(
+        `${BASE_URL}/auth/signin`,
+        {
+          email: userInfo.email,
+          password: userInfo.pw,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((result) => {
-          if (result.status === 200) {
-            const data = result.data;
-            localStorage.setItem("token", data.access_token);
-            navigate("/todo");
-          }
-        });
+        }
+      );
+      if (result.status === 200) {
+        const data = result.data;
+        localStorage.setItem("token", data.access_token);
+        navigate("/todo");
+      }
     } catch (error) {
       console.error(error);
       alert("이이디 또는 비밀번호가 들렸습니다.");
@@ -57,8 +49,7 @@ export default function SignIn() {
 
   const regex = /^\S+@\S+$/;
 
-  const isDisabled =
-    regex.test(userInfo.email) === true && userInfo.pw.length > 7;
+  const isDisabled = regex.test(userInfo.email) && userInfo.pw.length > 7;
 
   return (
     <div className="login">
@@ -90,7 +81,7 @@ export default function SignIn() {
               type="button"
               className={isDisabled ? "loginBtn" : "disabledBtn"}
               onClick={goToTodo}
-              disabled={isDisabled ? false : true}
+              disabled={!isDisabled}
               data-testid="signin-button"
             >
               로그인
