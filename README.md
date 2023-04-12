@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# 📀 wanted-pre-onboarding-frontend
+wanted-pre-onboarding-frontend 선발과정 사전과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br />
+<br/>
 
-## Available Scripts
+## 📣 project 실행방법
+1. 프로젝트 패키지 설치
 
-In the project directory, you can run:
+```
+npm install
+```
 
-### `npm start`
+2. 프로젝트 실행
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<br/>
+<br/>
 
-### `npm test`
+## 📣 기술스택
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/axios-purple?style=for-the-badge&logo=axios&logoColor=white"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><img src="https://img.shields.io/badge/React Router-CA4245?style=flat&amp;logo=ReactRouter&amp;logoColor=white" width="100" height="29"><img src="https://img.shields.io/badge/sass-CC6699?style=flat&logo=sass&logoColor=white" width="100" height="29"/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<br/>
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📣 Project Todo List
+회원가입, 로그인을 활용하여 유저별 todoList를 작성및 삭제기능을 구현하였습니다. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br />
+<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📣 File Tree
 
-### `npm run eject`
+```
+📦src
+ ┣ 📂Styles
+ ┃ ┣ 📜Common.scss
+ ┃ ┣ 📜Reset.scss
+ ┃ ┗ 📜Variables.scss
+ ┣ 📂assets
+ ┃ ┗ 📂button
+ ┃ ┃ ┣ 📜actCommentBtn.png
+ ┃ ┃ ┣ 📜comment.png
+ ┃ ┃ ┣ 📜commentBtn.png
+ ┃ ┃ ┣ 📜deleteTodo.png
+ ┃ ┃ ┣ 📜liked.png
+ ┃ ┃ ┣ 📜logoutImg.png
+ ┃ ┃ ┗ 📜modify.png
+ ┣ 📂config
+ ┃ ┗ 📜config.jsx
+ ┣ 📂pages
+ ┃ ┣ 📂SignIn
+ ┃ ┃ ┣ 📜SignIn.jsx
+ ┃ ┃ ┗ 📜SignIn.scss
+ ┃ ┣ 📂SignUp
+ ┃ ┃ ┣ 📜SignUp.jsx
+ ┃ ┃ ┗ 📜SignUp.scss
+ ┃ ┗ 📂Todo
+ ┃ ┃ ┣ 📜EmptyTodo.jsx
+ ┃ ┃ ┣ 📜EmptyTodo.scss
+ ┃ ┃ ┣ 📜Todo.jsx
+ ┃ ┃ ┣ 📜Todo.scss
+ ┃ ┃ ┣ 📜TodoList.jsx
+ ┃ ┃ ┗ 📜TodoList.scss
+ ┣ 📜Router.js
+ ┗ 📜index.js
+ ```
+ 
+ <br />
+ <br/>
+ 
+ ## 📣 페이지별 기능구현 영상
+ 
+ <br />
+ 
+ ### 👉 로그인
+ #### ❗ 영상
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+https://user-images.githubusercontent.com/120013855/231436666-35c5756c-ccc9-4e8e-977f-3ac42934069e.mov
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
+ 
+ #### ❗ 구현사항<br/>
+  1. 이메일 조건 '@'포함, 비밀번호 조건 8자 이상으로 유효성 검사를 통하여 로그인 버튼을 disabled 기능을 추가하였습니다.
+  2. 아이디 또는 비밀번호가 틀렸을시 alret창을통하여 유저에게 오류내용을 전달하였습니다.
+  3. login이 완료된 user(token이 있는user)면 바로 todo page로 연결되도록 구현하였습니다.
+  
+<br/>
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 👉 회원가입
+#### ❗ 영상
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+https://user-images.githubusercontent.com/120013855/231442179-991ffcdf-e6ec-45b3-bd34-4063ad808c83.mov
 
-## Learn More
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### ❗ 구현사항<br/>
+ 1. 이메일 조건 '@'포함, 비밀번호 조건 8자 이상으로 유효성 검사를 통하여 회원가입 버튼을 disabled 기능을 추가하였습니다.
+ 2. user가 회원가입시 이메일에 정확하게 '@'가 포함되었는지 안내하기 위해 안내멘트를 출력하게 하였습니다.
+ 3. password도 마찬가지로 user가 정확하게 자신이 의도한대로 입력하였는 확인할 수 있게 안내멘트를 출력하였습니다.
+ 4. 회원가입 완료시 login page로 이동하게 구현하였습니다.
+ 5. login이 완료된 user(token이 있는user)면 바로 todo page로 연결되도록 구현하였습니다. 
+  
+<br/>
+<br/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### 👉 Todo List
+#### ❗ 영상
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+https://user-images.githubusercontent.com/120013855/231467392-2de77a6b-475f-4841-90af-9ccb1563c706.mov
 
-### Analyzing the Bundle Size
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### ❗ 구현사항<br/>
+1. logout이 완료된 user(token이 없는user)면 로그인페이지로 연결되도록 구현하였습니다.
+2. 작성된 todolist가 없으면 user가 todo를 입력하도록 ui를 구성하였습니다.
+3. todo입력 input창에 내용을 입력하면 todolist에 출력이되도록 구현하였습니다.
+4. todo input창에 내용이 입력되야만 input button이 활성화 되도록 구현하였습니다.
+5. todo의 checkbox가 체크되면 수정이 되지않게 수정버튼에 disabled를 추가 하였습니다.
+6. 수정 button을 누르면 기존에 입력된 todo에 새로운 input창이 노출이되고 새로운 input창에서 todo를 수정할수 있게 구현하였습니다.
+7. todo 내용을 수정후 다시 수정button을 누르면 수정한 새로운 todo가 출력이되게 구현하였습니다.
+8. 취소button을 누르게 되면 이전에 입력된 todo가 출력이되도록 구현하였습니다.(todo 내용을 수정하였어도 취소버튼을 누르면 이전 todo내용이 출력)
