@@ -10,7 +10,7 @@
       text-align: center;
       color: white;
       margin: 0;
-      font-size: 70px
+      font-size: 70px;
     }
     .logoutWrap {
       display: flex;
@@ -45,6 +45,7 @@
       border: solid 1px black;
       border-radius: 6px;
       padding: 10px;
+      overflow: auto;
       background-color: #ffd1d7;
     }
   }
