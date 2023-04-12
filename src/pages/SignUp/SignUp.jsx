@@ -21,32 +21,25 @@ export default function SignUp() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/todo");
-    }
+    if (token) navigate("/todo");
   }, []);
 
   const goToMain = async (e) => {
     e.preventDefault();
     try {
-      await axios
-        .post(
-          `${BASE_URL}/auth/signup`,
-          {
-            password: signupInfo.pw,
-            email: signupInfo.email,
+      const result = await axios.post(
+        `${BASE_URL}/auth/signup`,
+        {
+          password: signupInfo.pw,
+          email: signupInfo.email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((result) => {
-          if (result.status === 201) {
-            navigate("/", { replace: true });
-          }
-        });
+        }
+      );
+      if (result.status === 201) navigate("/", { replace: true });
     } catch (error) {
       console.error(error);
       alert("이미 등록된 이메일 입니다.");
