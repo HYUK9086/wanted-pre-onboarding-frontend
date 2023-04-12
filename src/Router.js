@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 //import { BrowserRouter as Switch, Route, Redirect } from 'react-router-dom';
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
-import ToDo from "./pages/ToDo/ToDo";
+import Todo from "./pages/Todo/Todo";
 
 const Router = () => {
   //const token = localStorage.getItem("token", undefined);
@@ -13,7 +13,7 @@ const Router = () => {
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<SignIn />} />
-        <Route path="/todo" element={<ToDo />} />
+        <Route path="/todo" element={<Todo />} />
       </Routes>
     </BrowserRouter>
 
