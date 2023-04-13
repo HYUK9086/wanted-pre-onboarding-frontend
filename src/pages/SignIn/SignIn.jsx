@@ -47,7 +47,7 @@ export default function SignIn() {
     }
   };
 
-  const regex = /^\S+@\S+$/;
+  const regex = /.*@.*/;
 
   const isDisabled = regex.test(userInfo.email) && userInfo.pw.length > 7;
 
