@@ -17,6 +17,9 @@ npm install
 npm start
 ```
 
+## 📣 project 배포링크
+<a href="https://wanted-pre-onboarding-frontend-orcin.vercel.app/"> wanted-pre-onboarding-frontend 선발과정 사전과제 </a>
+
 <br/>
 <br/>
 
