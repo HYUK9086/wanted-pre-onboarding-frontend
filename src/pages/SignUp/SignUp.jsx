@@ -9,7 +9,7 @@ export default function SignUp() {
   const [signupInfo, setSignupInfo] = useState({
     email: "",
     pw: "",
-    checkPw: "",
+
   });
 
   const navigate = useNavigate();
@@ -47,15 +47,11 @@ export default function SignUp() {
   };
 
   const waringPw = () => {
-    if (
-      signupInfo.pw === signupInfo.checkPw &&
-      signupInfo.checkPw.length > 0 &&
-      signupInfo.pw.length > 0
-    ) {
-      return "비밀번호 일치";
-    } else if (signupInfo.pw !== signupInfo.checkPw) {
-      return "비밀번호가 일치하지 않습니다.";
-    } else if (signupInfo.checkPw.length < 0 && signupInfo.pw.length < 0) {
+    if (signupInfo.pw.length > 7) {
+      return "사용가능한 비밀번호입니다.";
+    } else if (signupInfo.pw.length >= 1 && signupInfo.pw.length <= 7) {
+      return "비밀번호는 8자이상 입력해주세요.";
+    } else if (signupInfo.pw.length < 0) {
       return null;
     }
   };
@@ -73,11 +69,10 @@ export default function SignUp() {
     }
   };
 
-  const regexEmail = /^\S+@\S+$/;
+  const regexEmail = /.*@.*/;
 
   const isDisabledJoin =
     signupInfo.pw.length >= 8 &&
-    signupInfo.pw === signupInfo.checkPw &&
     regexEmail.test(signupInfo.email) === true;
 
   return (
@@ -111,15 +106,9 @@ export default function SignUp() {
             name="pw"
             data-testid="password-input"
           />
-          <input
-            type="password"
-            placeholder="비밀번호 확인"
-            onChange={getSignupInfo}
-            name="checkPw"
-          />
           <p
             className={
-              signupInfo.pw === signupInfo.checkPw ? "pwGreenMsg" : "pwRedMsg"
+              signupInfo.pw.length > 7 ? "pwGreenMsg" : "pwRedMsg"
             }
           >
             {waringPw()}
