@@ -10,13 +10,44 @@ export default function TodoList({ todoList, setTodoList, todo }) {
   const [isEditing, setIsEditing] = useState(null);
   const [editingTodo, setEditingTodo] = useState("");
 
-  const updateTodo = async (id, text) => {
+  const checkTodo = async (e) => {
+    setIsComplete(e.target.checked);
+
+    try {
+      const access_token = localStorage.getItem("token");
+      const result = await axios.put(
+        `${BASE_URL}/todos/${todo.id}`,
+        {
+          todo: todo.todo,
+          isCompleted: e.target.checked,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (result.status !== 200) {
+        setIsComplete(e.target.checked);
+        throw new Error("Could not update todo.");
+      }
+      localStorage.setItem(
+        `todo-${todo.id}`,
+        JSON.stringify({ isComplete: e.target.checked })
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateTodo = async (id, newTodo) => {
     try {
       const access_token = localStorage.getItem("token");
       const result = await axios.put(
         `${BASE_URL}/todos/${id}`,
         {
-          todo: text,
+          todo: newTodo,
           isCompleted: false,
         },
         {
@@ -30,7 +61,7 @@ export default function TodoList({ todoList, setTodoList, todo }) {
         setTodoList((prevTodos) =>
           prevTodos.map((todo) => {
             if (todo.id === id) {
-              todo.todo = text;
+              todo.todo = newTodo;
             }
             return todo;
           })
@@ -55,8 +86,6 @@ export default function TodoList({ todoList, setTodoList, todo }) {
     const isTodoValid = editingTodo.trim().length > 0;
     if (isTodoValid) updateTodo(isEditing, editingTodo);
   };
-
-  const checkTodo = (e) => setIsComplete(e.target.checked);
 
   useEffect(() => setIsDisabled(!isComplete), [isComplete]);
 

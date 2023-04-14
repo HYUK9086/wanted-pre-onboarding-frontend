@@ -27,6 +27,7 @@ export default function Todo() {
         headers: { Authorization: `Bearer ${access_token}` },
       });
       setTodoList(result.data);
+      console.log(result.data)
     } catch (error) {
       console.error(error);
     }
@@ -36,12 +37,12 @@ export default function Todo() {
     getTodos();
   }, []);
 
-  const createTodo = async (newTodo) => {
+  const createTodo = async (todo) => {
     try {
       const access_token = localStorage.getItem("token");
       const result = await axios.post(
         `${BASE_URL}/todos`,
-        { todo: newTodo },
+        { todo: todo },
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
