@@ -27,7 +27,6 @@ export default function Todo() {
         headers: { Authorization: `Bearer ${access_token}` },
       });
       setTodoList(result.data);
-      console.log(result.data)
     } catch (error) {
       console.error(error);
     }

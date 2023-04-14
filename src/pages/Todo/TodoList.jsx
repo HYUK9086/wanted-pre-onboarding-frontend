@@ -32,10 +32,6 @@ export default function TodoList({ todoList, setTodoList, todo }) {
         setIsComplete(e.target.checked);
         throw new Error("Could not update todo.");
       }
-      localStorage.setItem(
-        `todo-${todo.id}`,
-        JSON.stringify({ isComplete: e.target.checked })
-      );
     } catch (error) {
       console.error(error);
     }
