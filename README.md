@@ -136,3 +136,4 @@ https://user-images.githubusercontent.com/120013855/231968083-68346c67-26af-4cb1
 6. 수정 button을 누르면 기존에 입력된 todo에 새로운 input창이 노출이되고 새로운 input창에서 todo를 수정할수 있게 구현하였습니다.
 7. todo 내용을 수정후 다시 수정button을 누르면 수정한 새로운 todo가 출력이되게 구현하였습니다.
 8. 취소button을 누르게 되면 이전에 입력된 todo가 출력이되도록 구현하였습니다.(todo 내용을 수정하였어도 취소버튼을 누르면 이전 todo내용이 출력)
+9. checkbox클릭시 todo가 완료되었는지 안되었는지에 대한 확인을 할 수있게 data 통신을 구현하였습니다. 
